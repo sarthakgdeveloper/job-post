@@ -1,0 +1,87 @@
+.loginContainer {
+  height: calc(100vh - 7rem);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login {
+    height: fit-content;
+    width: 55rem;
+    background-color: #fff;
+    box-shadow: 0px 30px 36px #557da526;
+    border-radius: 20px;
+    opacity: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+
+    & > h2 {
+      font-size: 2.2rem;
+      color: var(--bg-color);
+    }
+
+    .loginInputContainer,
+    .loginPasswordContainer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+
+      label {
+        font-size: 1.4rem;
+        color: var(--bg-color);
+      }
+
+      input {
+        height: 4.6rem;
+        padding: 2rem;
+        font-size: 1.4rem;
+        border: 1px solid #43afff;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
+    .loginButton {
+      margin-top: 2rem;
+      width: 100%;
+      text-align: center;
+
+      button {
+        all: unset;
+        font-size: 1.6rem;
+        color: #fff;
+        background-color: var(--primary-color);
+        padding: 1.4rem 5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+    }
+
+    a {
+      color: var(--primary-color);
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+    .toSignUpLink {
+      width: 100%;
+      text-align: center;
+      margin-top: 4.4rem;
+
+      span {
+        font-size: 1.4rem;
+        color: var(--bg-color);
+      }
+    }
+  }
+}

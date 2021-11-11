@@ -1,0 +1,52 @@
+.headerSection {
+  width: 100%;
+  height: fit-content;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .headerContainer {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+
+    .jobPostTitle,
+    .controllers {
+      padding: 2.2rem 0;
+      height: fit-content;
+      width: fit-content;
+
+      h4 {
+        font-size: 22px;
+        color: #fff;
+
+        span {
+          color: var(--primary-color);
+        }
+      }
+
+      button {
+        all: unset;
+        border: 1px solid var(--primary-color);
+        padding: 1.4rem 2.2rem;
+        border-radius: 0.5rem;
+        background-color: var(--secondary-color);
+        color: #fff;
+        text-align: center;
+        font-size: 1.2rem;
+        letter-spacing: 0px;
+        color: #ffffff;
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+
+    .controllers {
+      padding: 1.2rem 0;
+    }
+  }
+}

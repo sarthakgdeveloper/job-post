@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import JobPostContextProvider, {
+  JobPostContext,
+} from "./Context/jobPost.context";
+import Header from "./Components/header";
+import LandingPage from "./Components/landingPage/index.jsx";
+import { Switch, Route } from "react-router-dom";
+import "./App.css";
+import LogIn from "./Components/logIn";
+import SignUp from "./Components/signup";
 
 function App() {
+  const { currentUser } = useContext(JobPostContext);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/login" exact component={LogIn} />
+        <Route path="/signup" exact component={SignUp} />
+      </Switch>
     </div>
   );
 }
 
-export default App;
+export default (props) => (
+  <JobPostContextProvider>
+    <App {...props} />
+  </JobPostContextProvider>
+);
