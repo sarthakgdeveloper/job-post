@@ -1,0 +1,88 @@
+.postJobContainer {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .dashboardInfo {
+    position: absolute;
+    top: 8.3rem;
+    left: 12%;
+
+    span {
+      color: #fff;
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+  }
+
+  .postJob {
+    margin-top: 16rem;
+    padding: 3rem;
+    height: fit-content;
+    width: 56rem;
+    background-color: #fff;
+    box-shadow: 0px 30px 36px #557da526;
+    border-radius: 20px;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    span {
+      font-size: 2.2rem;
+      color: var(--bg-color);
+    }
+
+    div {
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+
+      &:last-child {
+        align-items: center;
+      }
+
+      label,
+      input,
+      textarea {
+        font-size: 1.4rem;
+        color: var(--bg-color);
+      }
+
+      input,
+      textarea {
+        resize: none;
+        height: 4.6rem;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid #c6c6c6;
+        outline: none;
+
+        &:focus {
+          border: 1px solid var(--primary-color);
+        }
+      }
+
+      textarea {
+        height: 11rem;
+      }
+
+      button {
+        all: unset;
+        width: fit-content;
+        color: #fff;
+        background-color: var(--primary-color);
+        border-radius: 0.5rem;
+        padding: 1.4rem 5.7rem;
+        font-size: 1.6rem;
+      }
+    }
+  }
+}

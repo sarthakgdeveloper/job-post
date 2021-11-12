@@ -7,6 +7,7 @@
   align-items: center;
 
   .headerContainer {
+    position: relative;
     width: 90%;
     margin: auto;
     display: flex;
@@ -15,7 +16,8 @@
     border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
 
     .jobPostTitle,
-    .controllers {
+    .controllers,
+    .userControllers {
       padding: 2.2rem 0;
       height: fit-content;
       width: fit-content;
@@ -42,6 +44,106 @@
         color: #ffffff;
         opacity: 1;
         cursor: pointer;
+      }
+    }
+
+    .userControllers {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4.8rem;
+
+      button {
+        all: unset;
+        cursor: pointer;
+        font-size: 1.6rem;
+        border: none;
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.8);
+        // white-space: nowrap;
+      }
+
+      .userInfo {
+        height: 100%;
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+
+        .userName {
+          position: relative;
+          height: 100%;
+          width: fit-content;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          div {
+            height: 4.6rem;
+            width: 4.6rem;
+            border-radius: 50%;
+            background-color: #d9efff;
+            opacity: 0.8;
+            position: relative;
+            top: 0;
+            left: 0;
+          }
+          span {
+            font-size: 1.8rem;
+            color: var(--bg-color);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        .dropdownContainer {
+          .arrowDown {
+            cursor: pointer;
+            border: solid #fff;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+          }
+
+          .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            height: 4.6rem;
+            width: 11.2rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            span {
+              padding: 0 1.2rem;
+              font-size: 1.4rem;
+              color: var(--bg-color);
+              cursor: pointer;
+              user-select: none;
+            }
+
+            &::before {
+              content: "";
+              position: absolute;
+              right: 5px;
+              width: 0;
+              height: 0;
+              border-style: solid;
+              top: -7px;
+              border-width: 0px 8px 8px 8px;
+              border-color: transparent transparent #fff transparent;
+            }
+          }
+        }
       }
     }
 
