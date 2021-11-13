@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { JobPostContext } from "../../Context/jobPost.context";
 import Styles from "./jobApplications.module.scss";
 
-function JobApplications({ setOpenApplication, jobData }) {
+function JobApplications({ setOpenApplication }) {
+  const { jobApplications } = useContext(JobPostContext);
   return (
     <div className={Styles.jobApplicationsContainer}>
       <div className={Styles.jobApplications}>
@@ -9,23 +11,26 @@ function JobApplications({ setOpenApplication, jobData }) {
           <span>Applications for this job</span>
           <button onClick={() => setOpenApplication(false)}>X</button>
         </div>
-        <p>{jobData.length > 0 ? `Total ${jobData.length}` : 0} applications</p>
+        <p>
+          {jobApplications.length > 0 ? `Total ${jobApplications.length}` : 0}{" "}
+          applications
+        </p>
         <div className={Styles.allJobApplications}>
-          {jobData?.length > 0 ? (
-            jobData?.map((eCard, index) => (
+          {jobApplications?.length > 0 ? (
+            jobApplications?.map((eCard, index) => (
               <div className={Styles.eachJobApplication} key={index}>
                 <div className={Styles.candidateInfoContainer}>
                   <div className={Styles.userImage}>
                     <div></div>
-                    <span>S</span>
+                    <span>{eCard?.name[0]}</span>
                   </div>
                   <div className={Styles.candidateInfo}>
-                    <span>Sarthak Gupta</span>
-                    <span>sarthakg2,29@gamil.com</span>
+                    <span>{eCard?.name}</span>
+                    <span>{eCard?.email}</span>
                   </div>
                 </div>
                 <span>skills</span>
-                <p>Coding, designing, graphics, website, app ui</p>
+                <p>{eCard?.skills}</p>
               </div>
             ))
           ) : (

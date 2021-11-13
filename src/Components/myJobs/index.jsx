@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import Styles from "./myJobs.module.scss";
 import JobApplications from "../jobApplications";
 import AddJob from "../../img/AddJob.png";
+import { JobPostContext } from "../../Context/jobPost.context";
 
 function MyJobs() {
   const history = useHistory();
+  const { getPostedJobs, jobs, getJobApplications } =
+    useContext(JobPostContext);
   const [openApplication, setOpenApplication] = useState(false);
+
+  useEffect(() => {
+    getPostedJobs();
+  }, []);
   return (
     <div className={Styles.myJobsContainer}>
       <div className={Styles.myJobs}>
@@ -16,19 +23,20 @@ function MyJobs() {
         <div className={Styles.myJobsHeader}>
           <h2>Jobs posted by you</h2>
         </div>
-        {true ? (
+        {jobs.length ? (
           <div className={Styles.postedJobsContainer}>
-            {[1, 2, 3, 4].map((e, index) => (
+            {jobs.map((e, index) => (
               <div key={index} className={Styles.jobPost}>
-                <span>Front-end Designer</span>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididun orem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididun
-                </p>
+                <span>{e?.title}</span>
+                <p>{e?.description}</p>
                 <div>
-                  <span>Gurgaon</span>
-                  <button onClick={() => setOpenApplication(true)}>
+                  <span>{e?.location}</span>
+                  <button
+                    onClick={async () => {
+                      await getJobApplications(e?.id);
+                      setOpenApplication(true);
+                    }}
+                  >
                     View Applications
                   </button>
                 </div>

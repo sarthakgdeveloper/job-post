@@ -4,7 +4,7 @@ import JobPostContextProvider, {
 } from "./Context/jobPost.context";
 import Header from "./Components/header";
 import LandingPage from "./Components/landingPage/index.jsx";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import LogIn from "./Components/logIn";
 import SignUp from "./Components/signup";
@@ -23,8 +23,16 @@ function App() {
         <Route path="/login" exact component={LogIn} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/forgotpassword" exact component={ForgotPassword} />
-        <Route path="/myjobs" exact component={MyJobs} />
-        <Route path="/myjobs/postjob" exact component={PostJob} />
+        <Route
+          path="/myjobs"
+          exact
+          render={() => (currentUser ? <MyJobs /> : <Redirect to="/" />)}
+        />
+        <Route
+          path="/myjobs/postjob"
+          exact
+          render={() => (currentUser ? <PostJob /> : <Redirect to="/" />)}
+        />
       </Switch>
     </div>
   );

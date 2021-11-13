@@ -4,24 +4,30 @@ import { useHistory } from "react-router";
 import Styles from "./header.module.scss";
 
 function Header() {
-  const { currentUser } = useContext(JobPostContext);
+  const { currentUser, getCurrentUser } = useContext(JobPostContext);
   const [dropdownClicked, isDropdownClicked] = useState(false);
   const history = useHistory();
   return (
     <div className={Styles.headerSection}>
       <div className={Styles.headerContainer}>
         <div className={Styles.jobPostTitle}>
-          <h4>
+          <h4
+            onClick={() =>
+              currentUser ? history.push("/myjobs") : history.push("/")
+            }
+          >
             My<span>Jobs</span>
           </h4>
         </div>
         {currentUser ? (
           <div className={Styles.userControllers}>
-            <button>Post a Job</button>
+            <button onClick={() => history.push("/myjobs/postjob")}>
+              Post a Job
+            </button>
             <div className={Styles.userInfo}>
               <div className={Styles.userName}>
                 <div></div>
-                <span>S</span>
+                <span>{currentUser.name[0]}</span>
               </div>
               <div className={Styles.dropdownContainer}>
                 <i
@@ -32,7 +38,14 @@ function Header() {
                   className={Styles.dropdown}
                   style={dropdownClicked ? {} : { display: "none" }}
                 >
-                  <span>Logout</span>
+                  <span
+                    onClick={() => {
+                      getCurrentUser(undefined);
+                      isDropdownClicked(false);
+                    }}
+                  >
+                    Logout
+                  </span>
                 </div>
               </div>
             </div>
