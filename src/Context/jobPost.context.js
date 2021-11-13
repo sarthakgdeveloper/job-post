@@ -110,17 +110,16 @@ export default (props) => {
     }
   };
 
-  const getPostedJobs = async () => {
+  const getPostedJobs = async (page = 1) => {
     if (!currentUser) return;
     const data = await axios({
       method: "GET",
-      url: `${base_url}/recruiters/jobs`,
+      url: `${base_url}/recruiters/jobs?page=${page}`,
       headers: {
         Authorization: currentUser?.token,
       },
     });
     if (data?.data?.success) {
-      console.log(data.data);
       getJobs(data?.data?.data ? [...data?.data?.data?.data] : []);
       return { success: true, error: false };
     }

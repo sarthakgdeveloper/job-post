@@ -10,10 +10,11 @@ function MyJobs() {
   const { getPostedJobs, jobs, getJobApplications } =
     useContext(JobPostContext);
   const [openApplication, setOpenApplication] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getPostedJobs();
-  }, []);
+    getPostedJobs(page);
+  }, [page]);
   return (
     <div className={Styles.myJobsContainer}>
       <div className={Styles.myJobs}>
@@ -44,15 +45,17 @@ function MyJobs() {
             ))}
           </div>
         ) : (
-          <div className={Styles.noJobPostContainer}>
-            <div>
-              <img src={AddJob} alt="" />
+          page === 1 && (
+            <div className={Styles.noJobPostContainer}>
+              <div>
+                <img src={AddJob} alt="" />
+              </div>
+              <span>Your posted jobs will show here!</span>
+              <button onClick={() => history.push("/myjobs/postjob")}>
+                Post a Job
+              </button>
             </div>
-            <span>Your posted jobs will show here!</span>
-            <button onClick={() => history.push("/myjobs/postjob")}>
-              Post a Job
-            </button>
-          </div>
+          )
         )}
       </div>
       {openApplication && (
@@ -61,6 +64,33 @@ function MyJobs() {
           jobData={[1, 2, 3]}
         />
       )}
+      {(jobs.length <= 0 && page !== 1) || jobs.length > 0 ? (
+        <div className={Styles.paginationContainer}>
+          <div
+            className={Styles.leftArrow}
+            onClick={() => (page > 1 ? setPage(page - 1) : undefined)}
+            style={
+              page === 1 ? { cursor: "not-allowed", background: "#cccccc" } : {}
+            }
+          >
+            <span>{"<"}</span>
+          </div>
+          <div className={Styles.pageNumberContainer}>
+            <span>{page}</span>
+          </div>
+          <div
+            className={Styles.rightArrow}
+            onClick={() => jobs.length > 19 && setPage(page + 1)}
+            style={
+              jobs.length < 20
+                ? { cursor: "not-allowed", background: "#cccccc" }
+                : {}
+            }
+          >
+            <span>{">"}</span>
+          </div>
+        </div>
+      ) : undefined}
     </div>
   );
 }
